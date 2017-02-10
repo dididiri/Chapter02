@@ -10,6 +10,9 @@ import android.view.View;
 
  */
 public class MyView extends View {
+    // 색상의 상태값을 관리할 맴버필드
+    private int colorState=0;
+
     //생성자1
     public MyView(Context context) {
         super(context);
@@ -22,6 +25,17 @@ public class MyView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         // View 를 노란색으로 칠하기
-        canvas.drawColor(Color.YELLOW);
+
+        if(colorState==0){
+            canvas.drawColor(Color.YELLOW);
+        }else if(colorState==1){
+            canvas.drawColor(Color.GREEN);
+        }
+    }
+    public void changeColor(){
+        colorState=1;
+        // 현재 View 에 표시된 내용을 clear 하고 다시 그리기
+        // 결과적으로 onDraw() 메소드가 다시 호출된다.
+        invalidate();
     }
 }
