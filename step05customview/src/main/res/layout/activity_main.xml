@@ -12,8 +12,13 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="눌러보셈"/>
+        android:text="눌러보셈"
+        android:onClick="btnClicked"/>
     <com.gura.step05customview.MyView
         android:layout_width="match_parent"
-        android:layout_height="300dp"/>
+        android:layout_height="100dp"
+        android:id="@+id/myView"/>
+    <com.gura.step05customview.YourView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"/>
 </LinearLayout>
