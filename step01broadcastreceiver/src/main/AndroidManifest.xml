@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.gura.step05customview">
+    package="com.gura.step01broadcastreceiver">
 
     <application
         android:allowBackup="true"
@@ -9,18 +9,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-
-        </activity>
-        <activity android:name=".Main2Activity">
-
-        </activity>
-        <activity android:name=".Main4Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- 방송 수신자 객체 설정 service com.gura.MERONG이런
+        속성에 intent받게다 필터링 함-->
+        <receiver
+            android:name=".MyReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.gura.MERONG"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
