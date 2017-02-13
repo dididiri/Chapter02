@@ -211,7 +211,7 @@ public class GameView extends View {
     public void makeMissile(){
         //22.미사일 갯수 조건
         //10의 배수일때만 만들겟다
-        if(count%11 !=0){
+        if(count%10 !=0){
             return;
         }
         //38.효과음 재생하기
