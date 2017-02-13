@@ -148,6 +148,18 @@ public class GameView extends View {
         //21. 카운트 증가 시키기
         count++;
     }
+    //23.(제거)배열에서 제거할 미사일은 제거하는 메소드
+    public void checkMissile(){
+        //배열에 저장된 Missile 을 객체를 마지막번째 방에서 부터 하나씩 불러와서
+        //배열에서 제거할 Missile 객체는 제거한다.
+        for(int i=missList.size()-1 ; i>=0; i--){
+            Missile tmp=missList.get(i);
+            if(tmp.isDead()){// 제거해야할 Misslie 객체라면
+                //i 번째 인덱스에 있는 객체를 제거한다.
+                missList.remove(i);
+            }
+        }
+    }
 
     //18. 미사일 움지는 메소드
     public void moveMissile(){
