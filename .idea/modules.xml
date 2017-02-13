@@ -11,6 +11,7 @@
       <module fileurl="file://$PROJECT_DIR$/step04example/step04example.iml" filepath="$PROJECT_DIR$/step04example/step04example.iml" />
       <module fileurl="file://$PROJECT_DIR$/step04viewpager/step04viewpager.iml" filepath="$PROJECT_DIR$/step04viewpager/step04viewpager.iml" />
       <module fileurl="file://$PROJECT_DIR$/step05customview/step05customview.iml" filepath="$PROJECT_DIR$/step05customview/step05customview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/step05game/step05game.iml" filepath="$PROJECT_DIR$/step05game/step05game.iml" />
     </modules>
   </component>
 </project>
