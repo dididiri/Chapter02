@@ -30,8 +30,12 @@ public class GameView extends View {
     int unitX, unitY;
     //드래곤의 크기
     int unitW, unitH;
-    //드래곤의 이미지
-    Bitmap unitImg;
+
+    //24.드래곤의 이미지 를 배열로
+    Bitmap[] unitImgs=new Bitmap[2];
+    //25.드래곤의 이미지 인덱스
+    int unitIdex;
+
     //action down 이 일어난곳의 x 좌표
     int lastX;
     //8. 유닛의 x 좌표 최대값 ,최소값
@@ -103,11 +107,21 @@ public class GameView extends View {
         maxUnitX=viewWidth;
 
         //드래곤 이미지 읽어들이기
-        Bitmap unitImg=BitmapFactory
+        Bitmap unitImg1=BitmapFactory
                 .decodeResource(getResources(), R.drawable.unit1);
-        //드래곤 이미지 스케일링
-        this.unitImg=Bitmap
-                .createScaledBitmap(unitImg,unitW,unitH, false);
+        //27. 드래곤 이미지 스케일링
+       unitImg1=Bitmap
+                .createScaledBitmap(unitImg1,unitW,unitH, false);
+
+        //드래곤 이미지 읽어들이기
+        Bitmap unitImg2=BitmapFactory
+                .decodeResource(getResources(), R.drawable.unit2);
+        //27. 드래곤 이미지 스케일링
+        unitImg2=Bitmap
+                .createScaledBitmap(unitImg2,unitW,unitH, false);
+        //28. 2개의 드래곤 이미지를 Bitmap[]에 저장
+        unitImgs[0]=unitImg1;
+        unitImgs[1]=unitImg2;
 
         //15.(미사일)미사일의 폭과 높이 결정하기
         missW = unitW;
@@ -136,18 +150,35 @@ public class GameView extends View {
                     tmp.getY()-missW/2, null);
         }
 
-        // 드래곤 이미지 그리기
-        canvas.drawBitmap(unitImg, unitX-unitW/2, unitY-unitH/2, null);
+        // 드래곤 이미지 그리기     //29.Bitmap[unitIndex] 0방,1방 주기적으로 바꿈 계속 교체됨
+        canvas.drawBitmap(unitImgs[unitIdex], unitX-unitW/2, unitY-unitH/2, null);
         //배경이미지 스크롤 처리
         backScroll();
         //17(미사일) 미사일 만들기(canvas 이용해서 미사일을그려야함)
         makeMissile();
         //19.미사일 움지이기
         moveMissile();
-
+        //31.유닛 애니매이션 처리
+        unitAnimation();
         //21. 카운트 증가 시키기
         count++;
     }
+    //30.
+    public void unitAnimation(){
+        //너무 자주 바뀌지 않도록
+        if(count%20 !=0){
+            return;
+        }
+        //인덱스를 1증가 시키고
+        unitIdex++;
+        if(unitIdex==2){//만일 존재하지 않는 인덱스라면
+            // 인덱스를 으로 교환
+            // 인덱스를 0으로 고정한다.
+            unitIdex=0;
+        }
+    }
+
+
     //23.(제거)배열에서 제거할 미사일은 제거하는 메소드
     public void checkMissile(){
         //배열에 저장된 Missile 을 객체를 마지막번째 방에서 부터 하나씩 불러와서
@@ -183,6 +214,8 @@ public class GameView extends View {
         if(count%10 !=0){
             return;
         }
+        //38.효과음 재생하기
+        Util.SoundManager.getInstance().play(MyConstants.SOUND_FIRE);
 
         //18(미사일) 미사일 객체 생성하기
         Missile m=new Missile();

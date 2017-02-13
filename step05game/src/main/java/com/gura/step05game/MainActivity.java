@@ -1,7 +1,7 @@
 package com.gura.step05game;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -16,6 +16,23 @@ public class MainActivity extends AppCompatActivity {
         view=new GameView(this);
         //GameView 객체로 화면을 모두 체울수 있도록(view 타입이나 int R.id 인자로 전달받음)
         setContentView(view);
+
+        /*//32(효과음). SoundPool 객체를 생성하고
+        SoundPool soundPool=new SoundPool(5, AudioManager.STREAM_MUSIC,0);
+        //33. 효과음을 로딩 시키고 효과물의 아이디를 얻어낸다.(비동기로딩)
+        int soundId = soundPool.load(this, R.raw.laser1,1);
+        //34. 재생시키는법 (필요한시점에 로딩은 미리(33) 해놓고 나중에 플레하는거(34)
+        soundPool.play(soundId, 1,1,1,0,1);*/
+
+        //37. Util 클래스에 있는 SoundManger(싱글톤)
+        Util.SoundManager sManager=Util.SoundManager.getInstance();
+        //초기화 하기 (Context type 데이터가 필요하다)
+        sManager.init(this);
+        //효과음 등록하기
+        sManager.addSound(MyConstants.SOUND_FIRE,R.raw.laser1);
+        sManager.addSound(MyConstants.SOUND_BOOM,R.raw.shoot1);
+        sManager.addSound(MyConstants.SOUND_DIE,R.raw.birddie);
+
     }
     //1.매뉴를 만들고싶으면 특정메소드를 오버라이딩해야됨
     @Override
