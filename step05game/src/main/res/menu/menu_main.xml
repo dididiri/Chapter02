@@ -11,4 +11,8 @@
         app:showAsAction="never"
         android:orderInCategory="2"
         android:id="@+id/menu_pause"/>
+    <item android:title="무음모드"
+        app:showAsAction="never"
+        android:orderInCategory="3"
+        android:id="@+id/menu_sound"/>
 </menu>

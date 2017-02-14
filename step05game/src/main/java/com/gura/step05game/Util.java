@@ -1,8 +1,11 @@
 package com.gura.step05game;
 
+import android.app.Activity;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.SoundPool;
+import android.support.v7.app.AlertDialog;
+import android.view.WindowManager;
 
 import java.util.HashMap;
 
@@ -52,5 +55,22 @@ public class Util {
             //인자로 전달된 인덱스 값을 이용해서 해당 음원을 정지 시킨다.
             soundPool.stop(map.get(index));
         }
+    }// class SoundManager
+
+    //6-1 Util.keepScreenOn
+    public static void keepScreenOn(Activity activity){
+        //화면 꺼지지 않도록 설정
+        activity.getWindow().addFlags
+                (WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
-}
+
+    //7-1 간단한 알림 창을 뛰우는 메소드
+    public static void showAlert(Context context, String msg){
+        new AlertDialog.Builder(context)
+                .setTitle("알림")
+                .setMessage(msg)
+                .setNeutralButton("확인", null)
+                .create()
+                .show();
+    }
+}//class Util
